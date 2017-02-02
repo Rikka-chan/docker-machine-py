@@ -114,7 +114,7 @@ class Client(object):
     def active(self):
         try:
             raw = self.cmd(['active'])
-        except errors.CLIError, e:
+        except errors.CLIError as e:
             msg = e.message
             if msg == 'No active host found':
                 return ClientOutput(msg, '')

@@ -1,4 +1,9 @@
-from UserDict import IterableUserDict
+try:
+    from UserDict import UserDict
+    from UserDict import DictMixin
+except ImportError:
+    from collections import UserDict
+    from collections import MutableMapping as DictMixin
 import collections
 
 __author__ = 'github.com/hangtwenty'
@@ -71,7 +76,7 @@ def namedtuple_from_mapping(mapping, name="Tupperware"):
     return this_namedtuple_maker(**mapping)
 
 
-class ProtectedDict(IterableUserDict):
+class ProtectedDict(UserDict):
     """ A class that exists just to tell `tupperware` not to eat it.
 
     `tupperware` eats all dicts you give it, recursively; but what if you
